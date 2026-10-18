@@ -5,7 +5,7 @@
 
 Este proyecto implementa un sistema de visión artificial para la detección y segmentación de bovinos y personas mediante YOLOv8n-seg.
 
-El sistema busca identificar los objetos presentes en una imagen, delimitar sus regiones mediante máscaras de segmentación y mostrar la confianza de cada predicción.
+El sistema identifica objetos presentes en imágenes, delimita sus regiones mediante máscaras de segmentación y muestra el nivel de confianza de cada predicción.
 
 ## 2. Objetivo
 
@@ -25,31 +25,33 @@ Desarrollar y evaluar un modelo de visión artificial capaz de reconocer bovinos
 
 | ID | Clase |
 |---|---|
-| 0 | cow |
-| 1 | person |
+| 0 | cow (bovino) |
+| 1 | person (persona) |
 
 ## 5. Estructura del proyecto
 
-- `train.py`: entrenamiento del modelo.
-- `val.py`: evaluación del modelo.
-- `detect.py`: inferencia sobre imágenes nuevas.
-- `requisitos.txt`: dependencias principales de Python.
+- `train.py`: script de entrenamiento.
+- `val.py`: script de evaluación.
+- `detect.py`: script de detección y segmentación.
+- `requirements.txt`: dependencias de Python.
 - `data.yaml`: configuración del conjunto de datos.
-- `best.pt`: pesos del mejor modelo entrenado.
+- `best.pt`: pesos del mejor modelo obtenido durante el entrenamiento.
 
-Los archivos del dataset y los pesos del modelo deben colocarse en las rutas correspondientes antes de ejecutar los scripts.
+El conjunto de datos debe estar organizado en las carpetas de entrenamiento, validación y prueba, con sus respectivas imágenes y etiquetas. Las rutas deben coincidir con la configuración de `data.yaml`.
 
 ## 6. Instalación
 
-Instalar Python y las dependencias indicadas en `requisitos.txt`:
+Se recomienda utilizar un entorno virtual de Python compatible con las versiones de las dependencias del proyecto.
+
+Instalar las dependencias con:
 
 ```bash
-pip install -r requisitos.txt
+pip install -r requirements.txt
 ```
 
 ## 7. Entrenamiento
 
-Con el dataset correctamente organizado y `data.yaml` configurado:
+Con el conjunto de datos disponible y `data.yaml` correctamente configurado, ejecutar:
 
 ```bash
 python train.py
@@ -57,7 +59,7 @@ python train.py
 
 ## 8. Evaluación
 
-Con el archivo `best.pt` disponible:
+Con el conjunto de datos de evaluación y los pesos del modelo disponibles, ejecutar:
 
 ```bash
 python val.py
@@ -65,27 +67,23 @@ python val.py
 
 ## 9. Detección y segmentación
 
-Para analizar una imagen:
+El script `detect.py` permite realizar inferencias sobre imágenes nuevas. Los argumentos y las rutas de entrada deben corresponder a los definidos en el código.
 
-```bash
-python detect.py --imagen prueba.jpg --modelo best.pt
-```
-
-El resultado incluirá las detecciones y las máscaras de segmentación generadas por el modelo.
+El resultado permite visualizar las detecciones, sus niveles de confianza y las máscaras de segmentación generadas por el modelo.
 
 ## 10. Resultados y limitaciones
 
-El modelo fue entrenado y evaluado en Google Colab utilizando un conjunto de datos etiquetado con las clases bovino y persona.
+El modelo fue entrenado y evaluado en Google Colab utilizando un conjunto de datos anotado con las clases bovino y persona.
 
-Los resultados, las métricas de evaluación y el análisis de errores se documentan en el informe académico del proyecto.
+Las métricas obtenidas y los ejemplos de predicción se presentan en las evidencias y el informe académico del proyecto.
 
-El rendimiento obtenido corresponde al conjunto de imágenes utilizado y no garantiza el mismo desempeño en condiciones reales de vigilancia ganadera.
+El rendimiento está condicionado por el tamaño y la diversidad del conjunto de datos. Por tanto, los resultados experimentales no garantizan el mismo desempeño en condiciones reales de vigilancia ganadera.
 
 ## 11. Trabajo futuro
 
 - Ampliar la cantidad y diversidad de imágenes.
 - Mejorar la detección de bovinos pequeños o parcialmente ocultos.
-- Analizar el rendimiento en condiciones reales.
+- Evaluar el modelo en condiciones reales de campo.
 - Integrar el modelo en un sistema de vigilancia ganadera.
 
 ## 12. Autoría
